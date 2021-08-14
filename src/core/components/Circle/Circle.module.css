@@ -1,0 +1,7 @@
+.progress {
+  transform: rotate(-90deg);
+}
+
+.circleProgress {
+  transition: stroke-dashoffset 0.3s linear;
+}

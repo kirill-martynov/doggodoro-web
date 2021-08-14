@@ -1,0 +1,12 @@
+.logo a {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.logo a:visited {
+  color: var(--black-color);
+}
+
+.logo a:hover {
+  opacity: 0.6;
+}

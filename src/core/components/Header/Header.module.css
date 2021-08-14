@@ -1,0 +1,27 @@
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navList {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0;
+
+  list-style: none;
+}
+
+.navItem:first-child {
+  margin-right: auto;
+}
+
+.navItem svg {
+  fill: var(--gray-color);
+
+  transition: opacity 0.3s linear;
+}
+
+.navItem svg:hover {
+  opacity: 0.6;
+}
