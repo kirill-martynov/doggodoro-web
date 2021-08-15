@@ -1,0 +1,29 @@
+.button {
+  min-width: 160px;
+  padding: 12px 18px;
+
+  color: #fff;
+  font-size: 16px;
+
+  background: var(--primary-color);
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.6;
+}
+
+.button.invisible {
+  min-width: auto;
+  padding: 0;
+
+  font-size: 0;
+
+  background: initial;
+  border: 0;
+  border-radius: initial;
+}

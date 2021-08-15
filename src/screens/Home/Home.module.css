@@ -1,0 +1,14 @@
+.content {
+  display: flex;
+}
+
+.column {
+  display: flex;
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.tasks h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
