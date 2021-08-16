@@ -1,0 +1,33 @@
+.task {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  border-bottom: 1px solid var(--gray-color);
+}
+
+.task span {
+  margin-right: 20px;
+}
+
+.type {
+  font-size: 20px;
+}
+
+.actions {
+  margin-left: auto;
+}
+
+.actions svg {
+  fill: var(--gray-color);
+
+  transition: fill 0.3s linear;
+}
+
+.actions button:hover svg {
+  fill: var(--red-color)
+}

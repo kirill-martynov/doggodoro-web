@@ -19,9 +19,15 @@ interface IProps {
 }
 
 export const Circle = (props: IProps) => {
-  const { progress = 0, size = 32, strokeWidth = 16, fill = {}, stroke = {} } = props;
+  const {
+    progress = 0,
+    size = 32,
+    strokeWidth = 16,
+    fill = {},
+    stroke = {},
+  } = props;
   const { circleColor = "none", progressColor = "none" } = fill;
-  const { circleStroke = "#f4f6f8", progressStroke = "#d4534a" } = stroke;
+  const { circleStroke = "#f4f6f8", progressStroke = "#53d3af" } = stroke;
 
   const circleRef = React.useRef(null);
 
@@ -34,33 +40,43 @@ export const Circle = (props: IProps) => {
   React.useEffect(() => {
     const progressOffset = ((100 - progress) / 100) * circumference;
 
-    setOffset(progressOffset)
-  }, [setOffset, circumference, progress, offset])
+    setOffset(progressOffset);
+  }, [setOffset, circumference, progress, offset]);
 
   return (
-    <svg className={s.progress} width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      <circle
-        className={s.circle}
-        cx={center}
-        cy={center}
-        r={radius}
-        fill={circleColor}
-        stroke={circleStroke}
-        strokeWidth={strokeWidth}
-      />
-      <circle
-        ref={circleRef}
-        className={s.circleProgress}
-        cx={center}
-        cy={center}
-        r={radius}
-        fill={progressColor}
-        stroke={progressStroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={circumference}
-        strokeDashoffset={offset}
-        strokeLinecap="round"
-      />
-    </svg>
+    <div className={s.circleWrapper}>
+      <div className={s.time}>
+        25:00<span>Focusing</span>
+      </div>
+      <svg
+        className={s.progress}
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+      >
+        <circle
+          className={s.circle}
+          cx={center}
+          cy={center}
+          r={radius}
+          fill={circleColor}
+          stroke={circleStroke}
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          ref={circleRef}
+          className={s.circleProgress}
+          cx={center}
+          cy={center}
+          r={radius}
+          fill={progressColor}
+          stroke={progressStroke}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
   );
 };
