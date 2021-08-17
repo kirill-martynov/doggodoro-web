@@ -36,3 +36,7 @@ a {
 
   transition: opacity 0.3s linear;
 }
+
+button {
+  font-family: inherit;
+}

@@ -4,6 +4,7 @@ import s from "./Circle.module.css";
 
 interface IProps {
   progress: number;
+  time: string;
 
   size?: number;
   fill?: {
@@ -20,6 +21,7 @@ interface IProps {
 
 export const Circle = (props: IProps) => {
   const {
+    time,
     progress = 0,
     size = 32,
     strokeWidth = 16,
@@ -46,7 +48,7 @@ export const Circle = (props: IProps) => {
   return (
     <div className={s.circleWrapper}>
       <div className={s.time}>
-        25:00<span>Focusing</span>
+        {time}<span>Focusing</span>
       </div>
       <svg
         className={s.progress}

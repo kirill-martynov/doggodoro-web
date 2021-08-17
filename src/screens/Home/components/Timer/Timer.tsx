@@ -8,9 +8,34 @@ import { Icon } from "../../../../core/components/Icon";
 import { TASK_LIST } from "../TaskList/TaskList";
 
 import s from "./Timer.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getTimerCircleStrokeColorSelector,
+  getTimerStatusSelector,
+  getTimerWorkTimeSelector,
+} from "../../state/timer/selectors/timerSelectors";
+import { convertMillisToMinutes, convertMinutesToMillis, convertTimeToProgress } from "./timerUtils";
+import { timerActions } from "../../state/timer/actions/timerActions";
 
 export const Timer = () => {
+  const dispatch = useDispatch();
+
+  const interval = React.useRef<any>(null);
+
+  const [time, setTime] = React.useState<number>(0);
+  const [progress, setProgress] = React.useState<number>(0);
   const [currentTask, setCurrentTask] = React.useState<string>("");
+
+  const timerStatus = useSelector(getTimerStatusSelector)
+  const timerWorkTime = useSelector(getTimerWorkTimeSelector);
+  const circleStrokeColor = useSelector(getTimerCircleStrokeColorSelector);
+
+  const millis = convertMinutesToMillis(timerWorkTime);
+  const minutes = convertMillisToMinutes(time);
+
+  React.useEffect(() => {
+    setTime(millis);
+  }, []);
 
   const handleDecreaseTime = () => {
     console.log("decrease time");
@@ -21,7 +46,46 @@ export const Timer = () => {
   };
 
   const handleTimer = () => {
-    console.log("handleTimer", handleTimer);
+    const hasStarted = interval.current;
+
+    if (hasStarted) {
+      setTime(millis);
+      setProgress(0);
+
+      dispatch(timerActions.setTimerStatus())
+
+      clearInterval(interval.current);
+
+      interval.current = null;
+
+      return;
+    }
+
+    dispatch(timerActions.setTimerStatus())
+
+    interval.current = setInterval(() => {
+      setTime((prevState: number) => {
+        if (prevState <= 0) {
+          clearInterval(interval.current);
+
+          interval.current = null;
+
+          setTime(millis);
+          setProgress(0);
+
+          dispatch(timerActions.setTimerStatus())
+
+          return prevState;
+        }
+
+        const currentTime = prevState - 1000;
+        const currentProgress = convertTimeToProgress(currentTime, millis)
+
+        setProgress(currentProgress);
+
+        return currentTime;
+      });
+    }, 1000);
   };
 
   const handleCurrentTask = (task: string) => {
@@ -41,7 +105,12 @@ export const Timer = () => {
       <h2 className={s.title}>Timer:</h2>
 
       <div className={s.content}>
-        <Circle progress={80} size={280} />
+        <Circle
+          time={minutes}
+          progress={progress}
+          size={280}
+          stroke={{ progressStroke: circleStrokeColor }}
+        />
 
         <h4 className={s.subtitle}>
           Current task: <span>{currentTask}</span>
@@ -64,7 +133,7 @@ export const Timer = () => {
         </ul>
 
         <Button className={s.timerStartButton} onClick={handleTimer}>
-          Start
+          {timerStatus ? 'Cancel' : 'Start'}
         </Button>
       </div>
     </div>
