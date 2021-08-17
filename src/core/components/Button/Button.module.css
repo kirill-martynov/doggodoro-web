@@ -27,3 +27,7 @@
   border: 0;
   border-radius: initial;
 }
+
+.button.danger {
+  background: var(--red-color);
+}

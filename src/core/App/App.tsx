@@ -1,15 +1,25 @@
-import React from "react";
+import * as React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Header } from "../components/Header";
 import { Container } from "../components/Container";
 
 import s from "./App.module.css";
+import { useDispatch } from "react-redux";
+import { getTasks } from "../../screens/Home/state/tasks/thunks/tasksThunks";
 
 const Home = React.lazy(() => import("../../screens/Home"));
 const Settings = React.lazy(() => import("../../screens/Settings"));
 
 export function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    console.log('init')
+
+    dispatch(getTasks());
+  }, []);
+
   return (
     <Router>
       <Header />

@@ -1,17 +1,22 @@
 import * as React from "react"
+import { useDispatch } from "react-redux";
 import { Button } from "../../../../core/components/Button";
 import { Icon } from "../../../../core/components/Icon";
+import { removeTask } from "../../state/tasks/thunks/tasksThunks";
 
 import s from "./Task.module.css";
 
 interface IProps {
+  id: string | number;
   name: string;
   type: string;
 }
 
-export const Task = ({ name, type }: IProps) => {
+export const Task = ({ id, name, type }: IProps) => {
+  const dispatch = useDispatch();
+
   const handleDeleteTask = () => {
-    console.log('handleDeleteTask')
+    dispatch(removeTask(id))
   }
 
   return (

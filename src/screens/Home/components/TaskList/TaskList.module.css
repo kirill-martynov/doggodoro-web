@@ -47,3 +47,77 @@
 .addTaskButton svg g {
   stroke: #fff;
 }
+
+.modalIcons {
+  margin-bottom: 30px;
+}
+
+.modalIconsTitle {
+  margin-bottom: 10px;
+}
+
+.modalIconsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  column-gap: 10px;
+  row-gap: 14px;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.modalIconsItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  
+  background-color: #eee;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.modalIconsItem:hover {
+  background-color: var(--secondary-color);
+}
+
+
+.modalIconsItem img {
+  max-width: 20px;
+  height: 20px;
+}
+
+.modalField {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalField label {
+  margin-bottom: 10px;
+
+  font-weight: 600;
+}
+
+.modalField input {
+  padding: 10px 8px;
+
+  font-size: 16px;
+
+  border: 1px solid var(--light-gray-color);
+  border-radius: var(--border-radius);
+}
+
+.modalField input:focus {
+  outline: 0;
+
+  border-color: var(--secondary-color);
+}
+
+.modalField input::placeholder {
+  color: var(--light-gray-color);
+  font-size: 14px;
+  font-weight: 500;
+}

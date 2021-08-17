@@ -4,7 +4,7 @@ import cn from "classnames";
 import s from "./Button.module.css";
 
 interface IProps {
-  theme?: 'primary' | 'secondary' | 'invisible';
+  theme?: 'primary' | 'secondary' | 'danger' | 'invisible';
   type?: "button" | "submit";
   className?: string;
 
