@@ -1,24 +1,26 @@
 import * as React from "react";
-
-import { Button } from "../../../../core/components/Button";
-
-import { Circle } from "../../../../core/components/Circle";
-
-import s from "./Timer.module.css";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Button } from "@core/components/Button";
+import { Circle } from "@core/components/Circle";
+
+import { timerActions } from "@Home/state/timer/actions/timerActions";
 import {
   getTimerCircleStrokeColorSelector,
   getTimerStatusSelector,
   getTimerWorkTimeSelector,
-} from "../../state/timer/selectors/timerSelectors";
+} from "@Home/state/timer/selectors/timerSelectors";
+import { getCurrentTaskSelector } from "@Home/state/tasks/selectors/tasksSelectors";
+
 import {
   convertMillisToMinutes,
   convertMinutesToMillis,
   convertTimeToProgress,
 } from "./timerUtils";
-import { timerActions } from "../../state/timer/actions/timerActions";
-import { getCurrentTaskSelector } from "../../state/tasks/selectors/tasksSelectors";
 import { TimerRecentTasks } from "./components/TimerRecentTasks";
+import { TimerFinishModal } from "./components/TimerFinishModal";
+
+import s from "./Timer.module.css";
 
 export const Timer = () => {
   const dispatch = useDispatch();
@@ -27,11 +29,15 @@ export const Timer = () => {
 
   const [timer, setTimer] = React.useState<number>(0);
   const [progress, setProgress] = React.useState<number>(0);
+  const [timerFinishModal, showTimerFinishModal] =
+    React.useState<boolean>(false);
 
   const timerStatus = useSelector(getTimerStatusSelector);
   const timerWorkTime = useSelector(getTimerWorkTimeSelector);
   const circleStrokeColor = useSelector(getTimerCircleStrokeColorSelector);
   const currentTask = useSelector(getCurrentTaskSelector);
+
+  const hasCurrentTask = Boolean(Object.keys(currentTask).length);
 
   const time = convertMinutesToMillis(timerWorkTime);
   const minutes = convertMillisToMinutes(timer);
@@ -47,10 +53,7 @@ export const Timer = () => {
 
         interval.current = null;
 
-        setTimer(time);
-        setProgress(0);
-
-        dispatch(timerActions.setTimerStatus());
+        showTimerFinishModal(true);
 
         return prevState;
       }
@@ -68,10 +71,7 @@ export const Timer = () => {
     const hasStarted = interval.current;
 
     if (hasStarted) {
-      setTimer(time);
-      setProgress(0);
-
-      dispatch(timerActions.setTimerStatus());
+      resetTimer();
 
       clearInterval(interval.current);
 
@@ -84,6 +84,15 @@ export const Timer = () => {
 
     interval.current = setInterval(updateTimer, 1000);
   };
+
+  const resetTimer = () => {
+    setTimer(time);
+    setProgress(0);
+
+    dispatch(timerActions.setTimerStatus());
+  }
+
+  const handleTimerFinishModal = () => resetTimer();
 
   return (
     <div className={s.timer}>
@@ -101,9 +110,11 @@ export const Timer = () => {
         <h4 className={s.subtitle}>
           Current task:{" "}
           <span className={s.task}>
-            <span className={s.taskType}>
-              <img src={currentTask.type} alt="icon" />
-            </span>
+            {hasCurrentTask && (
+              <span className={s.taskType}>
+                <img src={currentTask.type} alt="icon" />
+              </span>
+            )}
             <span className={s.taskName}>{currentTask.name || "🤷‍♂️"}</span>
           </span>
         </h4>
@@ -114,6 +125,12 @@ export const Timer = () => {
           {timerStatus ? "Cancel" : "Start"}
         </Button>
       </div>
+
+      <TimerFinishModal
+        show={timerFinishModal}
+        onConfirm={handleTimerFinishModal}
+        onHide={() => showTimerFinishModal(false)}
+      />
     </div>
   );
 };

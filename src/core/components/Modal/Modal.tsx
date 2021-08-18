@@ -8,15 +8,23 @@ import s from "./Modal.module.css";
 
 interface IProps {
   show: boolean;
-  
+
   className?: string;
 
   title?: string;
 
-  header?: boolean;
-  footer?: boolean;
-
   children: React.ReactNode;
+
+  buttons?: {
+    confirm?: {
+      text?: string;
+      on?: boolean;
+    };
+    cancel?: {
+      text?: string;
+      on?: boolean;
+    };
+  };
 
   onClose: () => void;
   onConfirm: () => void;
@@ -29,12 +37,15 @@ export const Modal = (props: IProps) => {
     show = false,
     className,
     title,
-    header = true,
-    footer = true,
     children,
+    buttons = {},
     onClose,
     onConfirm,
   } = props;
+
+  const { confirm = {}, cancel = {} } = buttons;
+  const { text: confirmText = "Create", on: confirmOn = true } = confirm;
+  const { text: cancelText = "Canel", on: cancelOn = true } = cancel;
 
   React.useEffect(() => {
     const bodyElement = document.getElementsByTagName("body")[0];
@@ -52,7 +63,7 @@ export const Modal = (props: IProps) => {
 
   const handleConfirm = () => {
     onConfirm();
-  }
+  };
 
   if (!modalNode || !show) {
     return null;
@@ -61,7 +72,7 @@ export const Modal = (props: IProps) => {
   return ReactDOM.createPortal(
     <div className={s.overlay}>
       <div className={cn(s.modal, className)}>
-        {header && (
+        {title && (
           <div className={s.header}>
             <h2 className={s.title}>{title}</h2>
           </div>
@@ -69,16 +80,18 @@ export const Modal = (props: IProps) => {
 
         <div className={s.content}>{children}</div>
 
-        {footer && (
-          <div className={s.footer}>
-            <div className={s.actions}>
+        <div className={s.footer}>
+          <div className={s.actions}>
+            {cancelOn && (
               <Button theme="danger" onClick={onClose}>
-                Cancel
+                {cancelText}
               </Button>
-              <Button onClick={handleConfirm}>Create</Button>
-            </div>
+            )}
+            {confirmOn && (
+              <Button onClick={handleConfirm}>{confirmText}</Button>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>,
     modalNode
