@@ -32,12 +32,15 @@
   height: 48px;
   margin-bottom: 10px;
 
-  font-size: 18px;
-
   background-color: #f9f9f9;
   border-radius: 50%;
 
   transition: background-color 0.3s ease-out;
+}
+
+.taskType img {
+  max-width: 24px;
+  height: 24px;
 }
 
 .more {

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "../../../../core/components/Button";
 import { Icon } from "../../../../core/components/Icon";
@@ -16,12 +16,14 @@ export const Task = ({ id, name, type }: IProps) => {
   const dispatch = useDispatch();
 
   const handleDeleteTask = () => {
-    dispatch(removeTask(id))
-  }
+    dispatch(removeTask(id));
+  };
 
   return (
     <li className={s.task}>
-      <span className={s.type}>{type}</span>
+      <span className={s.type}>
+        <img src={type} alt="icon" />
+      </span>
       <span className={s.name}>{name}</span>
 
       <div className={s.actions}>
@@ -30,5 +32,5 @@ export const Task = ({ id, name, type }: IProps) => {
         </Button>
       </div>
     </li>
-  )
-}
+  );
+};

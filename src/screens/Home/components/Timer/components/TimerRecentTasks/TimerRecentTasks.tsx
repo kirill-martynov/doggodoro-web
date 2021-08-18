@@ -37,7 +37,9 @@ export const TimerRecentTasks = () => {
           })}
           onClick={() => handleCurrentTask(task.name)}
         >
-          <span className={s.taskType}>{task.type}</span>
+          <span className={s.taskType}>
+            <img src={task.type} alt="icon" />
+          </span>
           <span className={s.taskName}>{task.name}</span>
         </li>
       ))}

@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
 export const TASK_LIST = [
-  { id: uuidv4(), type: "💊", name: "Health" },
-  { id: uuidv4(), type: "📚", name: "Study" },
-  { id: uuidv4(), type: "💻", name: "Work" },
-  { id: uuidv4(), type: "🏋️‍♀️", name: "Gym" },
+  { id: uuidv4(), type: "/assets/categories/8.png", name: "Study" },
+  { id: uuidv4(), type: "/assets/categories/10.png", name: "Reading" },
+  { id: uuidv4(), type: "/assets/categories/12.png", name: "Work" },
+  { id: uuidv4(), type: "/assets/categories/4.png", name: "Gym" },
 ];
 
 export const ICONS = [

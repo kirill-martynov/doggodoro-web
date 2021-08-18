@@ -24,7 +24,7 @@ export const Modal = (props: IProps) => {
   const { className, title, header = true, footer = true, children, onClose } = props;
 
   React.useEffect(() => {
-    const bodyElement = document.getElementById("root");
+    const bodyElement = document.getElementsByTagName("body")[0];
 
     if (!bodyElement) {
       return;
