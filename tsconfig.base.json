@@ -1,4 +1,13 @@
 {
-  "rootDir": "./src",
-  "baseUrl": "./"
+  "compilerOptions": {
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "paths": {
+      "@core/*": ["src/core/*"],
+      "@screens/*": ["src/screens/*"],
+
+      "@Home/*": ["src/screens/Home/*"],
+      "@Settings/*": ["src/screens/Settings/*"]
+    }
+  }
 }

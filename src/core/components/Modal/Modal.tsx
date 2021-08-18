@@ -2,10 +2,13 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import cn from "classnames";
 
+import { Button } from "@core/components/Button";
+
 import s from "./Modal.module.css";
-import { Button } from "../Button";
 
 interface IProps {
+  show: boolean;
+  
   className?: string;
 
   title?: string;
@@ -16,12 +19,22 @@ interface IProps {
   children: React.ReactNode;
 
   onClose: () => void;
+  onConfirm: () => void;
 }
 
 export const Modal = (props: IProps) => {
   const modalNode = document.getElementById("modal");
 
-  const { className, title, header = true, footer = true, children, onClose } = props;
+  const {
+    show = false,
+    className,
+    title,
+    header = true,
+    footer = true,
+    children,
+    onClose,
+    onConfirm,
+  } = props;
 
   React.useEffect(() => {
     const bodyElement = document.getElementsByTagName("body")[0];
@@ -37,7 +50,11 @@ export const Modal = (props: IProps) => {
     };
   }, []);
 
-  if (!modalNode) {
+  const handleConfirm = () => {
+    onConfirm();
+  }
+
+  if (!modalNode || !show) {
     return null;
   }
 
@@ -55,8 +72,10 @@ export const Modal = (props: IProps) => {
         {footer && (
           <div className={s.footer}>
             <div className={s.actions}>
-              <Button theme="danger" onClick={onClose}>Cancel</Button>
-              <Button onClick={onClose}>Create</Button>
+              <Button theme="danger" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button onClick={handleConfirm}>Create</Button>
             </div>
           </div>
         )}

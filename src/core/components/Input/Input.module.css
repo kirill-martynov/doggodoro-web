@@ -1,0 +1,31 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 10px;
+
+  font-weight: 600;
+}
+
+.input {
+  padding: 10px 8px;
+
+  font-size: 16px;
+
+  border: 1px solid var(--light-gray-color);
+  border-radius: var(--border-radius);
+}
+
+.input:focus {
+  outline: 0;
+
+  border-color: var(--secondary-color);
+}
+
+.input::placeholder {
+  color: var(--light-gray-color);
+  font-size: 14px;
+  font-weight: 500;
+}

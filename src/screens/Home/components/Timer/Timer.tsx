@@ -99,7 +99,13 @@ export const Timer = () => {
         />
 
         <h4 className={s.subtitle}>
-          Current task: <span>{currentTask || "🤷‍♂️"}</span>
+          Current task:{" "}
+          <span className={s.task}>
+            <span className={s.taskType}>
+              <img src={currentTask.type} alt="icon" />
+            </span>
+            <span className={s.taskName}>{currentTask.name || "🤷‍♂️"}</span>
+          </span>
         </h4>
 
         <TimerRecentTasks />

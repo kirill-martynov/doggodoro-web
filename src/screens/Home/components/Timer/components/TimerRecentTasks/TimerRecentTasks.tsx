@@ -15,11 +15,11 @@ export const TimerRecentTasks = () => {
   const tasks = useSelector(getTasksListSelector);
   const currentTask = useSelector(getCurrentTaskSelector);
 
-  const handleCurrentTask = (task: string) => {
-    const isCurrentTask = task === currentTask;
+  const handleCurrentTask = (task: any) => {
+    const isCurrentTask = task.id === currentTask.id;
 
     if (isCurrentTask) {
-      dispatch(tasksActions.setCurrentTask(""));
+      dispatch(tasksActions.setCurrentTask({}));
 
       return;
     }
@@ -33,9 +33,9 @@ export const TimerRecentTasks = () => {
         <li
           key={`${task.name}+${index}`}
           className={cn(s.task, {
-            [s.active]: currentTask === task.name,
+            [s.active]: currentTask.id === task.id,
           })}
-          onClick={() => handleCurrentTask(task.name)}
+          onClick={() => handleCurrentTask(task)}
         >
           <span className={s.taskType}>
             <img src={task.type} alt="icon" />

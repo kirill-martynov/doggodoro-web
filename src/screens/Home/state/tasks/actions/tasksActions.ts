@@ -53,10 +53,10 @@ export const tasksActions = {
     } as const;
   },
 
-  setCurrentTask: (currentTask: string) => {
+  setCurrentTask: (task: any) => {
     return {
       type: ETasksActionTypes.SET_CURRENT_TASK,
-      payload: { currentTask },
+      payload: { task },
     } as const;
   },
 };

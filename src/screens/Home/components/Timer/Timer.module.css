@@ -3,6 +3,8 @@
 }
 
 .subtitle {
+  display: flex;
+  align-items: center;
   min-height: 32px;
   margin-top: 30px;
 }
@@ -16,7 +18,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 .timerActions {
   display: flex;
@@ -45,4 +46,27 @@
   letter-spacing: 1px;
 
   text-transform: uppercase;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  margin-left: 6px;
+
+  font-size: 12px;
+
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius);
+}
+
+.taskType {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+
+.taskType img {
+  max-width: 100%;
+  height: 100%;
 }

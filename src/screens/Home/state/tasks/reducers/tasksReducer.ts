@@ -4,7 +4,7 @@ const initialState = {
   request: null,
   error: null,
   isLoading: false,
-  currentTask: "",
+  currentTask: {},
   list: [],
 };
 
@@ -45,7 +45,7 @@ export function tasksReducer(state = initialState, action: any) {
     }
 
     case ETasksActionTypes.SET_CURRENT_TASK:
-      return { ...state, currentTask: payload.currentTask };
+      return { ...state, currentTask: payload.task };
 
     default:
       return state;
