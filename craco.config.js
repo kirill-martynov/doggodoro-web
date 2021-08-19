@@ -7,7 +7,7 @@ module.exports = {
       "@screens": path.resolve(__dirname, "./src/screens"),
 
       "@Home": path.resolve(__dirname, "src/screens/Home"),
-      "@Settings": path.resolve(__dirname, "src/screens/settings"),
+      "@Settings": path.resolve(__dirname, "src/screens/Settings"),
 
       "src": path.resolve(__dirname, "./src"),
     },

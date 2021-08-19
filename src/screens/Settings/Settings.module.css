@@ -1,0 +1,11 @@
+.settings {
+  padding: 30px;
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 2px 10px -5px rgb(34 60 80 / 50%);
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
