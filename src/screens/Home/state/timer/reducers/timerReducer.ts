@@ -3,7 +3,7 @@ import { ETimerActionTypes } from "../actionTypes/timerActionTypes";
 const initialState = {
   status: false,
   time: {
-    work: 0.1,
+    work: 5,
     break: 5,
   },
   circle: {

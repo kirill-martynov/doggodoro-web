@@ -45,7 +45,7 @@ export const Modal = (props: IProps) => {
 
   const { confirm = {}, cancel = {} } = buttons;
   const { text: confirmText = "Create", on: confirmOn = true } = confirm;
-  const { text: cancelText = "Canel", on: cancelOn = true } = cancel;
+  const { text: cancelText = "Cancel", on: cancelOn = true } = cancel;
 
   React.useEffect(() => {
     const bodyElement = document.getElementsByTagName("body")[0];
@@ -54,23 +54,31 @@ export const Modal = (props: IProps) => {
       return;
     }
 
-    bodyElement.style.overflow = "hidden";
+    if (show) {
+      bodyElement.style.overflow = "hidden";
+    }
 
-    return () => {
+    if (!show) {
       bodyElement.style.overflow = "";
-    };
-  }, []);
+    }
+  }, [show]);
 
   const handleConfirm = () => {
     onConfirm();
   };
+
+  const handleClose = (event) => {
+    event.stopPropagation();
+
+    onClose();
+  }
 
   if (!modalNode || !show) {
     return null;
   }
 
   return ReactDOM.createPortal(
-    <div className={s.overlay}>
+    <div className={s.overlay} onClick={handleClose}>
       <div className={cn(s.modal, className)}>
         {title && (
           <div className={s.header}>
