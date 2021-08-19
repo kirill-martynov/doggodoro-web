@@ -68,6 +68,7 @@ export const Modal = (props: IProps) => {
   };
 
   const handleClose = (event) => {
+    console.log('event', event);
     event.stopPropagation();
 
     onClose();
@@ -78,7 +79,7 @@ export const Modal = (props: IProps) => {
   }
 
   return ReactDOM.createPortal(
-    <div className={s.overlay} onClick={handleClose}>
+    <div className={s.overlay} >
       <div className={cn(s.modal, className)}>
         {title && (
           <div className={s.header}>

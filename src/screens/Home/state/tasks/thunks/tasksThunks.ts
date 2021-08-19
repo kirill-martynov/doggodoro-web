@@ -43,3 +43,19 @@ export const removeTask = (id: number | string) => async (dispatch: any) => {
     dispatch(removeTaskFailure(error))
   }
 }
+
+export const editTask = (task = {}) => async (dispatch: any) => {
+  const { editTaskRequest, editTaskSuccess, editTaskFailure } = tasksActions;
+
+  dispatch(editTaskRequest());
+
+  console.log('task', task)
+
+  try {
+    dispatch(editTaskSuccess(task))
+  } catch (error) {
+    console.error(error);
+
+    dispatch(editTaskFailure(error))
+  }
+}

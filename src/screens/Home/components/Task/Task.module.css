@@ -34,6 +34,14 @@
   transition: fill 0.3s linear;
 }
 
+.actions button:first-child {
+  margin-right: 8px;
+}
+
+.actions button:first-child:hover svg {
+  fill: var(--primary-color);
+}
+
 .actions button:hover svg {
   fill: var(--red-color)
 }

@@ -35,6 +35,23 @@ export const tasksActions = {
     } as const;
   },
 
+  editTaskRequest: () => {
+    return {
+      type: ETasksActionTypes.EDIT_TASK_REQUEST,
+    } as const;
+  },
+  editTaskSuccess: (task: any) => {
+    return {
+      type: ETasksActionTypes.EDIT_TASK_SUCCESS,
+      payload: { task },
+    } as const;
+  },
+  editTaskFailure: (error: string) => {
+    return {
+      type: ETasksActionTypes.EDIT_TASK_FAILURE,
+    } as const;
+  },
+
   getTasksRequest: () => {
     return {
       type: ETasksActionTypes.GET_TASKS_REQUEST,
@@ -56,6 +73,12 @@ export const tasksActions = {
   setCurrentTask: (task: any) => {
     return {
       type: ETasksActionTypes.SET_CURRENT_TASK,
+      payload: { task },
+    } as const;
+  },
+  setEditorTask: (task: any) => {
+    return {
+      type: ETasksActionTypes.SET_EDITOR_TASK,
       payload: { task },
     } as const;
   },

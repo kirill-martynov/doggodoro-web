@@ -10,13 +10,19 @@ interface IProps {
   id: string | number;
   name: string;
   type: string;
+
+  onEdit: (type: string, task: any) => void;
 }
 
-export const Task = ({ id, name, type }: IProps) => {
+export const Task = ({ id, name, type, onEdit }: IProps) => {
   const dispatch = useDispatch();
 
   const handleDeleteTask = () => {
     dispatch(removeTask(id));
+  };
+
+  const handleEditTask = () => {
+    onEdit('edit', { id, type, name });
   };
 
   return (
@@ -27,6 +33,9 @@ export const Task = ({ id, name, type }: IProps) => {
       <span className={s.name}>{name}</span>
 
       <div className={s.actions}>
+        <Button theme="invisible" onClick={handleEditTask}>
+          <Icon name="edit" width="16" height="16" />
+        </Button>
         <Button theme="invisible" onClick={handleDeleteTask}>
           <Icon name="trash" width="16" height="16" />
         </Button>

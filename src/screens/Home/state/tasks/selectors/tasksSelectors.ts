@@ -16,3 +16,9 @@ export const getCurrentTaskSelector = (state: TRootState) =>
 
 export const getTasksListSelector = (state: TRootState) =>
   getTasksStateSelector(state).list;
+
+export const getTasksEditorSelector = (state: TRootState) =>
+  getTasksStateSelector(state).editor;
+
+export const getTasksEditorTaskSelector = (state: TRootState) =>
+  getTasksEditorSelector(state).task;

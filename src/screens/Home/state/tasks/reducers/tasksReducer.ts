@@ -1,3 +1,4 @@
+import { listenerCount } from "events";
 import { ETasksActionTypes } from "../actionTypes/tasksActionTypes";
 
 const initialState = {
@@ -5,6 +6,9 @@ const initialState = {
   error: null,
   isLoading: false,
   currentTask: {},
+  editor: {
+    task: {},
+  },
   list: [],
 };
 
@@ -36,6 +40,24 @@ export function tasksReducer(state = initialState, action: any) {
       return { ...state, isLoading: false, error: payload.error };
     }
 
+    case ETasksActionTypes.EDIT_TASK_REQUEST:
+      return { ...state, isLoading: true };
+    case ETasksActionTypes.EDIT_TASK_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        list: state.list.map((item: any) => {
+          if (item.id === payload.task.id) {
+            return { ...payload.task }
+          }
+
+          return item;
+        }),
+      };
+    case ETasksActionTypes.EDIT_TASK_FAILURE: {
+      return { ...state, isLoading: false, error: payload.error };
+    }
+
     case ETasksActionTypes.GET_TASKS_REQUEST:
       return { ...state, isLoading: true };
     case ETasksActionTypes.GET_TASKS_SUCCESS:
@@ -46,6 +68,12 @@ export function tasksReducer(state = initialState, action: any) {
 
     case ETasksActionTypes.SET_CURRENT_TASK:
       return { ...state, currentTask: payload.task };
+
+    case ETasksActionTypes.SET_EDITOR_TASK:
+      return {
+        ...state,
+        editor: { task: payload.task },
+      };
 
     default:
       return state;

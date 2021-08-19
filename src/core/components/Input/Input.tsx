@@ -12,6 +12,8 @@ interface IProps {
   name: string;
   value: string;
 
+  error?: string;
+
   onChange: (name: string, value: string) => void;
 }
 
@@ -22,9 +24,10 @@ export const Input = ({
   placeholder,
   name,
   value,
+  error,
   onChange,
 }: IProps) => {
-  const [inputValue, setInputValue] = React.useState<string>('');
+  const [inputValue, setInputValue] = React.useState<string>("");
 
   React.useEffect(() => {
     onChange(name, inputValue);
@@ -35,7 +38,7 @@ export const Input = ({
 
     setInputValue(value);
   };
-  
+
   return (
     <div className={cn(s.inputWrapper, className)}>
       {title && (
@@ -44,7 +47,7 @@ export const Input = ({
         </label>
       )}
       <input
-        className={s.input}
+        className={cn(s.input, { [s.error]: error })}
         id={name}
         type={type}
         name={name}
@@ -52,6 +55,7 @@ export const Input = ({
         value={value}
         onChange={handleChange}
       />
+      {error && <p className={s.error}>{error}</p>}
     </div>
   );
 };

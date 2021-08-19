@@ -7,6 +7,7 @@ interface IProps {
   theme?: 'primary' | 'secondary' | 'danger' | 'invisible';
   type?: "button" | "submit";
   className?: string;
+  disabled?: boolean;
 
   children: React.ReactNode;
 
@@ -17,6 +18,7 @@ export const Button = ({
   theme = 'primary',
   type = "button",
   className,
+  disabled,
   children,
   onClick,
 }: IProps) => {
@@ -29,7 +31,7 @@ export const Button = ({
   };
 
   return (
-    <button type={type} className={cn(s.button, s[theme], className)} onClick={handleClick}>
+    <button type={type} className={cn(s.button, s[theme], className)} onClick={handleClick} disabled={disabled}>
       {children}
     </button>
   );

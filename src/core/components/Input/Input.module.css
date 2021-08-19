@@ -29,3 +29,16 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+.input.error {
+  border-color: var(--red-color);
+}
+
+.error {
+  margin: 0;
+  margin-top: 8px;
+
+  color: var(--red-color);
+  font-size: 12px;
+  font-weight: 500;
+}
