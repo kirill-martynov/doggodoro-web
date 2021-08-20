@@ -5,7 +5,7 @@ import s from "./Input.module.css";
 
 interface IProps {
   className?: string;
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | "number";
 
   title?: string;
   placeholder?: string;
@@ -15,6 +15,7 @@ interface IProps {
   error?: string;
 
   onChange: (name: string, value: string) => void;
+  onBlur?: () => void;
 }
 
 export const Input = ({
@@ -26,8 +27,9 @@ export const Input = ({
   value,
   error,
   onChange,
+  onBlur,
 }: IProps) => {
-  const [inputValue, setInputValue] = React.useState<string>("");
+  const [inputValue, setInputValue] = React.useState<string>(value);
 
   React.useEffect(() => {
     onChange(name, inputValue);
@@ -54,6 +56,7 @@ export const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        onBlur={onBlur}
       />
       {error && <p className={s.error}>{error}</p>}
     </div>

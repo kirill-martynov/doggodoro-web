@@ -1,4 +1,4 @@
-import { TRootState } from "../../../../../core/redux/reducer";
+import { TRootState } from "@core/redux/reducer";
 
 export const getTimerStateSelector = (state: TRootState) => state.timer;
 

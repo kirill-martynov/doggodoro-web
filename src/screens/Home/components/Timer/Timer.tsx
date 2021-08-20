@@ -8,7 +8,6 @@ import { timerActions } from "@Home/state/timer/actions/timerActions";
 import {
   getTimerCircleStrokeColorSelector,
   getTimerStatusSelector,
-  getTimerWorkTimeSelector,
 } from "@Home/state/timer/selectors/timerSelectors";
 import { getCurrentTaskSelector } from "@Home/state/tasks/selectors/tasksSelectors";
 
@@ -21,6 +20,7 @@ import { TimerRecentTasks } from "./components/TimerRecentTasks";
 import { TimerFinishModal } from "./components/TimerFinishModal";
 
 import s from "./Timer.module.css";
+import { getSettingsTimerBreakTimeSelector, getSettingsTimerWorkTimeSelector } from "@screens/Settings/state/selectors/settingsSelectors";
 
 export const Timer = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,8 @@ export const Timer = () => {
     React.useState<boolean>(false);
 
   const timerStatus = useSelector(getTimerStatusSelector);
-  const timerWorkTime = useSelector(getTimerWorkTimeSelector);
+  const timerWorkTime = useSelector(getSettingsTimerWorkTimeSelector);
+  const timerBreakTime = useSelector(getSettingsTimerBreakTimeSelector);
   const circleStrokeColor = useSelector(getTimerCircleStrokeColorSelector);
   const currentTask = useSelector(getCurrentTaskSelector);
 

@@ -49,8 +49,6 @@ export const editTask = (task = {}) => async (dispatch: any) => {
 
   dispatch(editTaskRequest());
 
-  console.log('task', task)
-
   try {
     dispatch(editTaskSuccess(task))
   } catch (error) {

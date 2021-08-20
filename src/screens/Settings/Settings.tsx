@@ -1,14 +1,24 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Heading } from "@core/components/Heading";
 
-import s from "./Settings.module.css";
+import { SETTINGS_TITLES } from "./settingsConstants";
+import { getSettingsItemsSelector } from "./state/selectors/settingsSelectors";
 import { SettingsItem } from "./components/SettingsItem";
 
+import s from "./Settings.module.css";
+import { setSettingsItem } from "./state/thunks/settingsThunks";
+
 export function Settings() {
+  const dispatch = useDispatch();
+
+  const settings = useSelector(getSettingsItemsSelector);
+
   const handleSettingsItem = (name: string, value: string) => {
-    console.log("name", name);
-    console.log("value", value);
+    const item = { [name]: Number(value) };
+
+    dispatch(setSettingsItem(item));
   };
 
   return (
@@ -18,16 +28,15 @@ export function Settings() {
       </div>
 
       <div className={s.content}>
-        <SettingsItem
-          name="Timer work time:"
-          value=""
-          onChange={handleSettingsItem}
-        />
-        <SettingsItem
-          name="Timer break time:"
-          value=""
-          onChange={handleSettingsItem}
-        />
+        {settings.map((item) => (
+          <SettingsItem
+            key={item.name}
+            name={item.name}
+            value={item.value}
+            title={SETTINGS_TITLES[item.name]}
+            onChange={handleSettingsItem}
+          />
+        ))}
       </div>
     </div>
   );

@@ -68,7 +68,6 @@ export const Modal = (props: IProps) => {
   };
 
   const handleClose = (event) => {
-    console.log('event', event);
     event.stopPropagation();
 
     onClose();

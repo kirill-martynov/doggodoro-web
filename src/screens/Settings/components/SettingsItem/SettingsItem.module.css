@@ -1,4 +1,6 @@
 .settingsItem {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6,11 +8,33 @@
   max-width: 500px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
 
-  border-bottom:  1px solid var(--gray-color);
+.settingsItem::before {
+  content: "";
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: calc(100% - 50px);
+  height: 1px;
+  background-color: var(--gray-color);
+}
+
+.field {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 }
 
 .field input {
-  padding: 4px;
-  max-width: 60px;
+  padding: 16px 14px;
+  padding-bottom: 18px;
+  max-width: 50px;
+
+  border: 0;
+  border-bottom: 1px solid var(--gray-color);
+  border-radius: 0;
 }
