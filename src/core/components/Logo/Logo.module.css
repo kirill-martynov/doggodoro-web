@@ -1,4 +1,5 @@
 .logo a {
+  color: var(--black-color);
   font-size: 32px;
   font-weight: 700;
 }

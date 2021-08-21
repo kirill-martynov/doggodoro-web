@@ -4,19 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Heading } from "@core/components/Heading";
 
 import { SETTINGS_TITLES } from "./settingsConstants";
-import { getSettingsItemsSelector } from "./state/selectors/settingsSelectors";
+import { setSettingsItem } from "./state/thunks/settingsThunks";
+import { getSettingsItemsSelector, getSettingsTimerSelector } from "./state/selectors/settingsSelectors";
+
 import { SettingsItem } from "./components/SettingsItem";
 
 import s from "./Settings.module.css";
-import { setSettingsItem } from "./state/thunks/settingsThunks";
 
 export function Settings() {
   const dispatch = useDispatch();
 
   const settings = useSelector(getSettingsItemsSelector);
+  const timerSettings = useSelector(getSettingsTimerSelector);
 
   const handleSettingsItem = (name: string, value: string) => {
-    const item = { [name]: Number(value) };
+    let item: any = { [name]: Number(value) };
+
+    if (name === "work" || name === "break") {
+      item = { timer: { ...timerSettings, ...item } };
+    }
 
     dispatch(setSettingsItem(item));
   };

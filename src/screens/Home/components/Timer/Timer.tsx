@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { showNotification } from "@core/utils/browserNotifications";
 import { Button } from "@core/components/Button";
 import { Circle } from "@core/components/Circle";
 
@@ -20,7 +21,10 @@ import { TimerRecentTasks } from "./components/TimerRecentTasks";
 import { TimerFinishModal } from "./components/TimerFinishModal";
 
 import s from "./Timer.module.css";
-import { getSettingsTimerBreakTimeSelector, getSettingsTimerWorkTimeSelector } from "@screens/Settings/state/selectors/settingsSelectors";
+import {
+  getSettingsTimerBreakTimeSelector,
+  getSettingsTimerWorkTimeSelector,
+} from "@screens/Settings/state/selectors/settingsSelectors";
 
 export const Timer = () => {
   const dispatch = useDispatch();
@@ -53,7 +57,13 @@ export const Timer = () => {
         clearInterval(interval.current);
 
         interval.current = null;
+        
+        const notificationBody = currentTask?.name ? `You've spent ${timerWorkTime} minutes on: ${currentTask.name}` : `You've been focused for ${timerWorkTime}`;
 
+        showNotification({
+          title: "Doggodoro",
+          body: notificationBody,
+        });
         showTimerFinishModal(true);
 
         return prevState;
@@ -91,7 +101,7 @@ export const Timer = () => {
     setProgress(0);
 
     dispatch(timerActions.setTimerStatus());
-  }
+  };
 
   const handleTimerFinishModal = () => resetTimer();
 

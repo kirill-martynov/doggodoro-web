@@ -1,22 +1,40 @@
 import * as React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { requestNotification } from "@core/utils/browserNotifications";
+
+import { getTasks } from "@Home/state/tasks/thunks/tasksThunks";
+
+import { setSettingsItem } from "@Settings/state/thunks/settingsThunks";
 
 import { Header } from "../components/Header";
 import { Container } from "../components/Container";
 
 import s from "./App.module.css";
-import { useDispatch } from "react-redux";
-import { getTasks } from "../../screens/Home/state/tasks/thunks/tasksThunks";
 
-const Home = React.lazy(() => import("../../screens/Home"));
-const Settings = React.lazy(() => import("../../screens/Settings"));
+const Home = React.lazy(() => import("@screens/Home"));
+const Settings = React.lazy(() => import("@screens/Settings"));
+
+const init = () => async (dispatch) => {
+  try {
+    const notificationPermission = await requestNotification();
+
+    if (notificationPermission) {
+      dispatch(setSettingsItem({ notifications: true }));
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    console.log('init')
+    console.log("init");
 
+    dispatch(init());
     dispatch(getTasks());
   }, []);
 

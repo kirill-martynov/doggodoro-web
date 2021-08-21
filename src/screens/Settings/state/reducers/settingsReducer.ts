@@ -1,8 +1,9 @@
 import { ESettingsActionTypes } from "../actionTypes/settingsActionTypes";
 
 const initialState = {
+  notifications: false,
   timer: {
-    work: 5,
+    work: 0.05,
     break: 5,
   },
 };
@@ -14,7 +15,7 @@ export function settingsReducer(state = initialState, action) {
     case ESettingsActionTypes.SET_SETTINGS_ITEM_REQUEST:
       return { ...state };
     case ESettingsActionTypes.SET_SETTINGS_ITEM_SUCCESS:
-      return { ...state, timer: { ...state.timer, ...payload.item } };
+      return { ...state, ...payload.item };
     case ESettingsActionTypes.SET_SETTINGS_ITEM_FAILURE:
       return { ...state };
 
