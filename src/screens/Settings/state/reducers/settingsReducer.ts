@@ -3,7 +3,7 @@ import { ESettingsActionTypes } from "../actionTypes/settingsActionTypes";
 const initialState = {
   notifications: false,
   timer: {
-    work: 0.05,
+    work: 25,
     break: 5,
   },
 };

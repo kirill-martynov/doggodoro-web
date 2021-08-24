@@ -1,4 +1,4 @@
 export const SETTINGS_TITLES = {
-  'work': 'Timer work time:',
-  'break': 'Timer break time:',
+  'work': 'Work session:',
+  'break': 'Break session:',
 }

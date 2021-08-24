@@ -40,7 +40,7 @@ export const SettingsItem = ({
 
       <Input
         className={s.field}
-        type="text"
+        type="number"
         name={name}
         value={settingItemValue}
         onChange={handleValueChange}
