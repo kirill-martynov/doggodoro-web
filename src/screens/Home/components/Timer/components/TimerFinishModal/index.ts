@@ -1,1 +1,0 @@
-export { TimerFinishModal } from './TimerFinishModal';
