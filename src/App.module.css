@@ -1,0 +1,9 @@
+.root {
+  padding: 10px;
+
+  background: red;
+
+  @media (--small-viewport) {
+    background: blue;
+  }
+}
