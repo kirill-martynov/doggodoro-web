@@ -1,0 +1,13 @@
+:root {
+  --title-xs: 24px;
+  --title-sm: 30px;
+  --title-md: 36px;
+  --title-lg: 48px;
+  --title-xl: 60px;
+  --title-xxl: 72px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+}

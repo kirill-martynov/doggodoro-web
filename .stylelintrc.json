@@ -1,7 +1,11 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-standard",
+    "stylelint-config-prettier"
+  ],
   "plugins": ["stylelint-order"],
-  "customSyntax": "postcss",
+  "customSyntax": "postcss-scss",
   "rules": {
     "selector-class-pattern": null,
     "at-rule-no-unknown": null,
