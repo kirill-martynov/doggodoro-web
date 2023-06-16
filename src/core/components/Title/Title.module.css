@@ -1,31 +1,33 @@
 .root {
-  &.xs {
-    font-size: var(--title-xs);
-    line-height: 32px;
-  }
+  margin: 0;
+}
 
-  &.sm {
-    font-size: var(--title-sm);
-    line-height: 38px;
-  }
+.xs {
+  font-size: var(--title-xs);
+  line-height: 32px;
+}
 
-  &.md {
-    font-size: var(--title-md);
-    line-height: 44px;
-  }
+.sm {
+  font-size: var(--title-sm);
+  line-height: 38px;
+}
 
-  &.lg {
-    font-size: var(--title-lg);
-    line-height: 60px;
-  }
+.md {
+  font-size: var(--title-md);
+  line-height: 44px;
+}
 
-  &.xl {
-    font-size: var(--title-xl);
-    line-height: 72px;
-  }
+.lg {
+  font-size: var(--title-lg);
+  line-height: 60px;
+}
 
-  &.xxl {
-    font-size: var(--title-xxl);
-    line-height: 90px;
-  }
+.xl {
+  font-size: var(--title-xl);
+  line-height: 72px;
+}
+
+.xxl {
+  font-size: var(--title-xxl);
+  line-height: 90px;
 }

@@ -1,7 +1,31 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
 html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+
   font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .root {
-  padding: 10px;
+  display: flex;
+}
+
+.main {
+  width: 100%;
+}
+
+.content {
+  padding: var(--space-32) var(--space-20);
 }
