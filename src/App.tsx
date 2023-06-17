@@ -1,17 +1,12 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import * as React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import { Main } from '@core/screens/Main';
 import { Sidebar } from '@core/components/Sidebar';
-
-import s from './App.module.css';
 import { Header } from '@core/components/Header';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main />,
-  },
-]);
+import s from './App.module.css';
+
+const ROUTES = [{ element: React.lazy(() => import('@core/screens/Main')), path: '/' }];
 
 function App() {
   return (
@@ -21,7 +16,15 @@ function App() {
         <Header />
 
         <div className={s.content}>
-          <RouterProvider router={router} />
+          <React.Suspense fallback="Loading...">
+            <Routes>
+              {ROUTES.map((route) => {
+                const Screen = route.element;
+
+                return <Route key={route.path} path={route.path} element={<Screen />} />;
+              })}
+            </Routes>
+          </React.Suspense>
         </div>
       </main>
     </div>
