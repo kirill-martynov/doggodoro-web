@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { Sidebar } from '@core/components/Sidebar';
 import { Header } from '@core/components/Header';
+import { Sidebar } from '@core/components/Sidebar';
 
 import s from './App.module.css';
 

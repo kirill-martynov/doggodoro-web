@@ -3,5 +3,31 @@
   "tabWidth": 2,
   "printWidth": 100,
   "semi": true,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "^react$",
+    "^react-dom$",
+    "^react-redux$",
+    "^react-router-dom$",
+    "^react-use$",
+    "^react-device-detect$",
+    "^connected-react-router$",
+    "^lodash$",
+    "<THIRD_PARTY_MODULES>",
+    "^classnames$",
+    "^src/(.*)$",
+    "",
+    "^@core/(.*)$",
+    "",
+    "^../(?!.*.(scss|module.scss|css)$).*$",
+    "",
+    "^./(?!.*.(scss|module.scss|css)$).*$",
+    "",
+    "^assets/(.*)$",
+    "",
+    ".*.(scss|module.scss|css)$"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
+  "importOrderBuiltinModulesToTop": true
 }
