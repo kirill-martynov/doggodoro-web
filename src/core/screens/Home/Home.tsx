@@ -1,11 +1,11 @@
 import { Title } from '@core/components/Title';
 
-import s from './Main.module.css';
+import s from './Home.module.css';
 
-export const Main = () => {
+export const Home = () => {
   return (
     <div className={s.root}>
-      <Title>Main</Title>
+      <Title>Home</Title>
     </div>
   );
 };

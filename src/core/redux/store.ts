@@ -1,19 +1,14 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { createReduxHistoryContext } from 'redux-first-history';
 
+import history from './history';
 import { rootReducer } from './reducer';
-import { createBrowserHistory } from 'history';
 
-const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({
-  history: createBrowserHistory(),
-});
+const { createReduxHistory, routerMiddleware } = createReduxHistoryContext({ history });
 
 export const store = configureStore({
-  reducer: combineReducers({
-    router: routerReducer,
-    rootReducer,
-  }),
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware),
 });
 
-export const history = createReduxHistory(store);
+export const reduxHistory = createReduxHistory(store);

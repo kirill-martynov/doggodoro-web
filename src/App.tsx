@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Header } from '@core/components/Header';
 import { Sidebar } from '@core/components/Sidebar';
+import { Header } from '@core/compound/Header';
 
 import s from './App.module.css';
 
-const ROUTES = [{ element: React.lazy(() => import('@core/screens/Main')), path: '/' }];
+const ROUTES = [{ element: React.lazy(() => import('@core/screens/Home')), path: '/' }];
 
 function App() {
   return (
